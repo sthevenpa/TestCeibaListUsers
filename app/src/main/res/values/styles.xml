@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">@color/green</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/green</item>
+        <item name="hintTextColor">@color/green</item>
+    </style>
+</resources>
