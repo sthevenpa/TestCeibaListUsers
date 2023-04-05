@@ -1,4 +1,4 @@
-package com.test.testceibalistusers.data.di
+package com.test.testceibalistusers.di
 
 
 import com.test.testceibalistusers.data.api.ApiService

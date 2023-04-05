@@ -15,9 +15,9 @@ class ListPostViewModel  @Inject constructor(
 ) : ViewModel() {
     val statePost = MutableStateFlow(StateApp(Status.INIT, ModelPosts(), ""))
 
-    fun getPosts() {
+    fun getPostsByUsers(userId:Int) {
         viewModelScope.launch {
-            repositoryApi.getPosts().collect {
+            repositoryApi.getPostsByUser(userId).collect {
                 statePost.value = it
             }
         }

@@ -1,20 +1,22 @@
 package com.test.testceibalistusers.data.model
 
+import com.test.testceibalistusers.domain.model.User
+
 data class ModelUsers(
     val status: Boolean? = null,
     val code: String? = null,
     val message: String? = null,
-    val response: ArrayList<ResponseUser> = ArrayList()
+    val response: List<User> = ArrayList()
 )
 data class ResponseUser(
-    val id: Int? = null,
-    val name: String? = null,
-    val username: String? = null,
-    val email: String? = null,
-    val phone: String? = null,
+    val id: Int = 0,
+    val name: String = "",
+    val username: String = "",
+    val email: String = "",
+    val phone: String = "",
 
 ) {
     override fun toString(): String {
-        return "$name"
+        return "-$id $name $email $phone-"
     }
 }

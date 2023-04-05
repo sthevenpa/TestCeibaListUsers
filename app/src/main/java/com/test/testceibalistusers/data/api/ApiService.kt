@@ -14,6 +14,6 @@ interface ApiService {
     suspend fun getUsers(): ArrayList<ResponseUser>
 
     @GET("/posts")
-    suspend fun getPosts(): ArrayList<ResponsePost>
+    suspend fun getPosts(@Query("userId") userId: Int): ArrayList<ResponsePost>
 
 }

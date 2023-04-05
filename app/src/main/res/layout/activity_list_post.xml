@@ -8,26 +8,64 @@
     android:fillViewport="true"
     tools:context=".ui.screens.post.view.ListPostActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiSearchPost"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green"
+        android:layout_marginBottom="@dimen/card_text_margin_start"
+        app:titleTextColor="@color/white"
+        app:navigationIconTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/card_text_margin_start"
+        android:layout_marginTop="@dimen/card_text_margin_start"
         android:layout_marginHorizontal="@dimen/card_text_margin_start"
-        android:gravity="center"
-        style="@style/AppTheme.TextInputLayout"
+        android:text="@string/text_name_user"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/tvPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:hint="@string/title_txt_search_post"
-            android:inputType="textPersonName" />
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/card_text_margin_start"
+        android:text="@string/text_phone"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:drawablePadding="10dp"
+        app:drawableStartCompat="@drawable/ic_phone_24"
+        app:drawableTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/tvEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/card_text_margin_start"
+        android:text="@string/text_email"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:drawableStartCompat="@drawable/ic_email_24"
+        android:drawablePadding="10dp"
+        app:drawableTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/rvPosts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
@@ -35,11 +73,10 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="15dp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiSearchPost"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
         tools:listitem="@layout/card_post">
 
     </androidx.recyclerview.widget.RecyclerView>

@@ -1,13 +1,15 @@
 package com.test.testceibalistusers.ui.screens.user.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.test.testceibalistusers.data.model.ResponseUser
 import com.test.testceibalistusers.data.repository.Status
 import com.test.testceibalistusers.databinding.ActivityListUserBinding
+import com.test.testceibalistusers.domain.model.User
+import com.test.testceibalistusers.ui.screens.post.view.ListPostActivity
 import com.test.testceibalistusers.ui.screens.user.adapter.SelectUserAdapter
 import com.test.testceibalistusers.ui.screens.user.viewmodel.ListUserViewModel
 import com.test.testceibalistusers.utils.AdapterControl
@@ -21,9 +23,8 @@ class ListUserActivity : AppCompatActivity(){
 
     private val viewModel: ListUserViewModel by viewModels()
 
-    private var usersList: ArrayList<ResponseUser> = ArrayList()
+    private var usersList: ArrayList<User> = ArrayList()
     private var adapter: SelectUserAdapter? = null
-    private var selectUserId:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +44,18 @@ class ListUserActivity : AppCompatActivity(){
                     Status.SUCCESS -> {
                         MessageManager.progressGone(this@ListUserActivity)
                         val list = it.data?.response
-                        usersList = list!!
+                        val userArrayList = list?.let { it1 -> ArrayList<User>(it1) }
+                        usersList = userArrayList!!
 
-                        adapter = SelectUserAdapter(usersList) { userId ->
-                            selectUserId = userId
+                        adapter = SelectUserAdapter(usersList) { user ->
+                            selectUser(user)
                         }
                         binding.rvUsers.adapter = adapter
                     }
                     Status.FAILED -> {
                         MessageManager.progressGone(this@ListUserActivity)
                         val code = it.code
-
+                        println("Error {$code}")
                     }
                     else -> {}
                 }
@@ -66,5 +68,14 @@ class ListUserActivity : AppCompatActivity(){
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = AdapterControl()
 
+    }
+
+    private fun selectUser(user:User){
+        val intent = Intent(this, ListPostActivity::class.java)
+        intent.putExtra("id", user.id)
+        intent.putExtra("name", user.name)
+        intent.putExtra("email", user.email)
+        intent.putExtra("phone", user.phone)
+        startActivity(intent)
     }
 }

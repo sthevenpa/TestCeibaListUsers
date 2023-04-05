@@ -4,7 +4,7 @@ data class ModelPosts(
     val status: Boolean? = null,
     val code: String? = null,
     val message: String? = null,
-    val response: List<ResponsePost> = ArrayList()
+    val response: ArrayList<ResponsePost> = ArrayList()
 )
 data class ResponsePost(
     val id: Int? = null,

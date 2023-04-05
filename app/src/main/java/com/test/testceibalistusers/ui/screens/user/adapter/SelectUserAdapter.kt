@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.test.testceibalistusers.data.model.ResponseUser
 import com.test.testceibalistusers.databinding.CardUserBinding
+import com.test.testceibalistusers.domain.model.User
 
-class SelectUserAdapter(private val userList: ArrayList<ResponseUser>,
-                        private val onUserUpdate:(Int) -> Unit): RecyclerView.Adapter<SelectUserAdapter.ViewHolder>() {
+class SelectUserAdapter(private val userList: ArrayList<User>,
+                        private val onUserUpdate:(User) -> Unit): RecyclerView.Adapter<SelectUserAdapter.ViewHolder>() {
 
-    private var selected: Int = 0
     class ViewHolder(val binding: CardUserBinding) : RecyclerView.ViewHolder(binding.root)
 
 
@@ -29,8 +29,7 @@ class SelectUserAdapter(private val userList: ArrayList<ResponseUser>,
     }
 
     private fun onUpdate(position: Int) {
-        selected = userList[position].id!!
-        onUserUpdate.invoke(selected)
+        onUserUpdate.invoke(userList[position])
     }
 
     override fun getItemCount() = userList.size
