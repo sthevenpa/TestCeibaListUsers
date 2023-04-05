@@ -8,19 +8,6 @@
     android:fillViewport="true"
     tools:context=".ui.screens.post.view.ListPostActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green_dark"
-        android:elevation="1dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiSearchPost"
         android:layout_width="0dp"
@@ -29,10 +16,9 @@
         android:layout_marginHorizontal="@dimen/card_text_margin_start"
         android:gravity="center"
         style="@style/AppTheme.TextInputLayout"
-        app:layout_constraintBottom_toTopOf="@+id/rvPosts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -48,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="15dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

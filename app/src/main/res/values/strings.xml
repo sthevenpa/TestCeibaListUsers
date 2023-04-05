@@ -8,4 +8,9 @@
     <string name="button_text_see_post">Ver publicaciones</string>
     <string name="text_title_post">Título</string>
     <string name="text_body_post">Contenido</string>
+    <string name="msg_internet_off">Para continuar comprueba tu conexión a Wi-Fi o datos móviles</string>
+    <string name="button_text_accept">Aceptar</string>
+    <string name="button_text_cancel">Cancelar</string>
+    <string name="title_dialog_internet_off">Sin conexión a internet</string>
+    <string name="text_loading">Espere un momento por favor…</string>
 </resources>
