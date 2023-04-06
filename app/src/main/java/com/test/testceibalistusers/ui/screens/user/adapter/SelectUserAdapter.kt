@@ -7,7 +7,7 @@ import com.test.testceibalistusers.data.model.ResponseUser
 import com.test.testceibalistusers.databinding.CardUserBinding
 import com.test.testceibalistusers.domain.model.User
 
-class SelectUserAdapter(private val userList: ArrayList<User>,
+class SelectUserAdapter(private var userList: ArrayList<User>,
                         private val onUserUpdate:(User) -> Unit): RecyclerView.Adapter<SelectUserAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: CardUserBinding) : RecyclerView.ViewHolder(binding.root)
@@ -23,13 +23,17 @@ class SelectUserAdapter(private val userList: ArrayList<User>,
         holder.binding.tvPhone.text = currentPosition.phone
         holder.binding.tvEmail.text = currentPosition.email
 
-        holder.binding.root.setOnClickListener{onUpdate(position)}
         holder.binding.btSeePost.setOnClickListener {onUpdate(position)}
 
     }
 
     private fun onUpdate(position: Int) {
         onUserUpdate.invoke(userList[position])
+    }
+
+    fun updateUserList(userList :ArrayList<User>) {
+        this.userList = userList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = userList.size

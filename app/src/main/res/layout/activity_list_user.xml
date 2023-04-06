@@ -21,10 +21,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tieSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:hint="@string/title_txt_search_user"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:maxEms="30"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.testceibalistusers.data.repository.Status
@@ -67,6 +69,13 @@ class ListUserActivity : AppCompatActivity(){
         binding.rvUsers.setHasFixedSize(true)
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = AdapterControl()
+
+        binding.tieSearch.addTextChangedListener { name ->
+            val listFiltered = usersList.filter { user ->
+                user.name.lowercase().contains(name.toString().lowercase()) }
+            val userArrayList = ArrayList<User>(listFiltered)
+            adapter?.updateUserList(userArrayList)
+        }
 
     }
 
