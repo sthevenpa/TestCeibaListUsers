@@ -8,7 +8,7 @@ import com.test.testceibalistusers.data.database.entities.UserEntity
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user_table ORDER BY id DESC")
+    @Query("SELECT * FROM user_table ORDER BY id ASC")
     suspend fun getAllUsers():List<UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

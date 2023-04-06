@@ -2,10 +2,10 @@ package com.test.testceibalistusers.ui.screens.user.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.testceibalistusers.data.repository.Status
@@ -53,11 +53,34 @@ class ListUserActivity : AppCompatActivity(){
                             selectUser(user)
                         }
                         binding.rvUsers.adapter = adapter
+                        viewModel.getPosts()
                     }
                     Status.FAILED -> {
                         MessageManager.progressGone(this@ListUserActivity)
                         val code = it.code
-                        println("Error {$code}")
+                        val message = it.message
+                        println("Error {$code} {$message}")
+                        validateEmpty(usersList)
+                    }
+                    else -> {}
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.statePost.collect {
+                when (it.status) {
+                    Status.LOADING -> {
+                        MessageManager.progressVisible(this@ListUserActivity)
+                    }
+                    Status.SUCCESS -> {
+                        MessageManager.progressGone(this@ListUserActivity)
+                    }
+                    Status.FAILED -> {
+                        MessageManager.progressGone(this@ListUserActivity)
+                        val code = it.code
+                        val message = it.message
+                        println("Error {$code} {$message}")
                     }
                     else -> {}
                 }
@@ -73,10 +96,20 @@ class ListUserActivity : AppCompatActivity(){
         binding.tieSearch.addTextChangedListener { name ->
             val listFiltered = usersList.filter { user ->
                 user.name.lowercase().contains(name.toString().lowercase()) }
-            val userArrayList = ArrayList<User>(listFiltered)
-            adapter?.updateUserList(userArrayList)
+            val userList = ArrayList<User>(listFiltered)
+            adapter?.updateUserList(userList)
+            validateEmpty(userList)
         }
 
+    }
+    private fun validateEmpty(userList: ArrayList<User>){
+        if(userList.isEmpty()){
+            binding.rvUsers.visibility = View.GONE
+            binding.tvMsg.visibility = View.VISIBLE
+        }else{
+            binding.rvUsers.visibility = View.VISIBLE
+            binding.tvMsg.visibility = View.GONE
+        }
     }
 
     private fun selectUser(user:User){

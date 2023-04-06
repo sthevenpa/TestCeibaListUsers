@@ -29,6 +29,7 @@
             android:maxLines="1"
             android:maxLength="30"
             android:maxEms="30"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -45,7 +46,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tiSearchUser"
         tools:listitem="@layout/card_user">
-
     </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_msg_empty_list"
+        android:layout_gravity="end"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiSearchUser"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,14 @@
 package com.test.testceibalistusers.ui.screens.post.view
 
 import android.os.Bundle
-import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.test.testceibalistusers.data.model.ResponsePost
 import com.test.testceibalistusers.data.repository.Status
 import com.test.testceibalistusers.databinding.ActivityListPostBinding
+import com.test.testceibalistusers.domain.model.Post
 import com.test.testceibalistusers.ui.screens.post.adapter.SelectPostAdapter
 import com.test.testceibalistusers.ui.screens.post.viewmodel.ListPostViewModel
 import com.test.testceibalistusers.utils.AdapterControl
@@ -22,7 +22,7 @@ class ListPostActivity : AppCompatActivity() {
 
     private val viewModel: ListPostViewModel by viewModels()
 
-    private var postList: ArrayList<ResponsePost> = ArrayList()
+    private var postList: ArrayList<Post> = ArrayList()
     private var adapter: SelectPostAdapter? = null
 
     private var id: Int = 0
@@ -46,7 +46,7 @@ class ListPostActivity : AppCompatActivity() {
 
 
         lifecycleScope.launch {
-            viewModel.statePost.collect {
+            viewModel.stateUserPosts.collect {
                 when (it.status) {
                     Status.LOADING -> {
                         MessageManager.progressVisible(this@ListPostActivity)
@@ -54,15 +54,18 @@ class ListPostActivity : AppCompatActivity() {
                     Status.SUCCESS -> {
                         MessageManager.progressGone(this@ListPostActivity)
                         val list = it.data?.response
-                        postList = list!!
+                        val postArrayList = list?.let { it1 -> ArrayList<Post>(it1) }
+                        postList = postArrayList!!
 
                         adapter = SelectPostAdapter(postList)
                         binding.rvPosts.adapter = adapter
+                        validateEmpty(postList)
                     }
                     Status.FAILED -> {
                         MessageManager.progressGone(this@ListPostActivity)
                         val code = it.code
-                        println("Error {$code}")
+                        val message = it.message
+                        println("Error {$code} {$message}")
                     }
                     else -> {}
                 }
@@ -83,6 +86,16 @@ class ListPostActivity : AppCompatActivity() {
             setNavigationOnClickListener {
                 finish()
             }
+        }
+    }
+
+    private fun validateEmpty(postList: ArrayList<Post>){
+        if(postList.isEmpty()){
+            binding.rvPosts.visibility = View.GONE
+            binding.tvMsg.visibility = View.VISIBLE
+        }else{
+            binding.rvPosts.visibility = View.VISIBLE
+            binding.tvMsg.visibility = View.GONE
         }
     }
 }

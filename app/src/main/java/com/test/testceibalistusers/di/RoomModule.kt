@@ -3,6 +3,7 @@ package com.test.testceibalistusers.di
 import android.content.Context
 import androidx.room.Room
 import com.test.testceibalistusers.data.database.TestCeibaDatabase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +27,9 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideUserDao(db:TestCeibaDatabase) = db.getUserDao()
+
+
+    @Singleton
+    @Provides
+    fun providePostDao(db:TestCeibaDatabase) = db.getPostDao()
 }

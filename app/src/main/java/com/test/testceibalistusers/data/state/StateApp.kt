@@ -30,8 +30,8 @@ data class StateApp<out T>(val status: Status, val data: T?=null, val message:St
 
         // In case of failure ,set state to Error ,
         // add the error message,set data to null
-        fun <T> failed(message: String): StateApp<T> {
-            return StateApp(Status.FAILED, message=message)
+        fun <T> failed(message: String, code:Int): StateApp<T> {
+            return StateApp(Status.FAILED, message=message, code = code)
         }
     }
 

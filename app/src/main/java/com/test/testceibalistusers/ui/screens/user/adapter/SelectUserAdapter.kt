@@ -3,7 +3,6 @@ package com.test.testceibalistusers.ui.screens.user.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.test.testceibalistusers.data.model.ResponseUser
 import com.test.testceibalistusers.databinding.CardUserBinding
 import com.test.testceibalistusers.domain.model.User
 

@@ -26,7 +26,7 @@
             android:layout_marginStart="@dimen/card_text_margin_start"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:textColor="@color/green"
                 android:drawablePadding="10dp"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 app:drawableStartCompat="@drawable/ic_phone_24"
                 app:drawableTint="@color/green"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

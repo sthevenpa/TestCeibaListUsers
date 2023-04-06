@@ -2,15 +2,12 @@
     <string name="app_name">Prueba de Ingreso</string>
     <string name="title_txt_search_user">Buscar usuario</string>
     <string name="title_txt_search_post">Buscar publicación</string>
-    <string name="text_name_user">Nombre</string>
-    <string name="text_phone">Teléfono</string>
-    <string name="text_email">Correo</string>
+    <string name="text_name_user">Name</string>
+    <string name="text_phone">Phone</string>
+    <string name="text_email">Email</string>
     <string name="button_text_see_post">Ver publicaciones</string>
-    <string name="text_title_post">Título</string>
-    <string name="text_body_post">Contenido</string>
-    <string name="msg_internet_off">Para continuar comprueba tu conexión a Wi-Fi o datos móviles</string>
-    <string name="button_text_accept">Aceptar</string>
-    <string name="button_text_cancel">Cancelar</string>
-    <string name="title_dialog_internet_off">Sin conexión a internet</string>
+    <string name="text_title_post">Title</string>
+    <string name="text_body_post">Body</string>
+    <string name="text_msg_empty_list">List is empty</string>
     <string name="text_loading">Espere un momento por favor…</string>
 </resources>
