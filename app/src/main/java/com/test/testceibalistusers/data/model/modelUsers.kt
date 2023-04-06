@@ -11,7 +11,6 @@ data class ModelUsers(
 data class ResponseUser(
     val id: Int = 0,
     val name: String = "",
-    val username: String = "",
     val email: String = "",
     val phone: String = "",
 
